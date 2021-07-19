@@ -1,0 +1,10 @@
+# caclulate calibration curve.
+# auctor: rl_zhang email: 81968472@qq.com
+
+
+if __name__ == "__main__":
+    probs_lgr = lgr.fit(X_train, y_train).predict_proba(X_test)[:,1]
+    preds_svc = svc.fit(X_train, y_train).predict(X_test)
+
+    probs_svc = svc.decision_function(X_test)
+    probs_svc = (probs_svc - probs_svc.min()) / (probs_svc.max() - probs_svc.min())
